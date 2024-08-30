@@ -1,8 +1,36 @@
 import React, { useState } from "react";
 
+interface AddOns {
+  quickWax: boolean;
+  ceramicDetailer: boolean;
+  wetcoatSealant: boolean;
+  pasteWax: boolean;
+  tiresCleaning: boolean;
+  innerBarrel: boolean;
+  rimsDegrease: boolean;
+  conditioning: boolean;
+  detailing: boolean;
+  windowPolish: boolean;
+}
+
+const PanelAddOns: (keyof AddOns)[] = [
+  "quickWax",
+  "ceramicDetailer",
+  "wetcoatSealant",
+  "pasteWax",
+];
+
+const WheelsAddOns: (keyof AddOns)[] = [
+  "tiresCleaning",
+  "innerBarrel",
+  "rimsDegrease",
+];
+
+const EngineAddOns: (keyof AddOns)[] = ["conditioning", "detailing"];
+
 function HomePage() {
   const [selectedSlot, setSelectedSlot] = useState("P1");
-  const [addOns, setAddOns] = useState({
+  const [addOns, setAddOns] = useState<AddOns>({
     quickWax: true,
     ceramicDetailer: false,
     wetcoatSealant: false,
@@ -15,11 +43,11 @@ function HomePage() {
     windowPolish: false,
   });
 
-  const handleSlotChange = (slot) => {
+  const handleSlotChange = (slot: string) => {
     setSelectedSlot(slot);
   };
 
-  const handleAddOnChange = (addOn) => {
+  const handleAddOnChange = (addOn: keyof AddOns) => {
     setAddOns({ ...addOns, [addOn]: !addOns[addOn] });
   };
 
@@ -92,12 +120,7 @@ function HomePage() {
             {/* Panels */}
             <div>
               <h3 className="font-semibold mb-4">Panels</h3>
-              {[
-                "quickWax",
-                "ceramicDetailer",
-                "wetcoatSealant",
-                "pasteWax",
-              ].map((addOn) => (
+              {PanelAddOns.map((addOn) => (
                 <label key={addOn} className="flex items-center space-x-2">
                   <input
                     type="checkbox"
@@ -115,7 +138,7 @@ function HomePage() {
             {/* Wheels */}
             <div>
               <h3 className="font-semibold mb-4">Wheels</h3>
-              {["tiresCleaning", "innerBarrel", "rimsDegrease"].map((addOn) => (
+              {WheelsAddOns.map((addOn) => (
                 <label key={addOn} className="flex items-center space-x-2">
                   <input
                     type="checkbox"
@@ -133,7 +156,7 @@ function HomePage() {
             {/* Engine Bay */}
             <div>
               <h3 className="font-semibold mb-4">Engine Bay</h3>
-              {["conditioning", "detailing"].map((addOn) => (
+              {EngineAddOns.map((addOn) => (
                 <label key={addOn} className="flex items-center space-x-2">
                   <input
                     type="checkbox"
