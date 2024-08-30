@@ -1,9 +1,9 @@
-export default function Login() {
+export default function SignUp() {
   return (
     <div className="flex h-screen justify-center items-center bg-gray-100">
       <div className="w-full max-w-sm">
         <div className="card bg-white shadow-lg p-8">
-          <h2 className="text-2xl font-bold text-center mb-6">Login</h2>
+          <h2 className="text-2xl font-bold text-center mb-6">Sign Up</h2>
           <form>
             <div className="form-control mb-4">
               <label className="label">
@@ -31,11 +31,11 @@ export default function Login() {
                 <span className="label-text">Remember me</span>
               </label> */}
             </div>
-            <button className="btn btn-primary w-full">Login</button>
+            <button className="btn btn-primary w-full">Sign Up</button>
           </form>
           <div className="text-center mt-4">
             <a href="#" className="link-hover link-primary">
-              Sign Up
+              Login
             </a>
           </div>
         </div>
