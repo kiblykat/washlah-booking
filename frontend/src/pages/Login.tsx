@@ -1,4 +1,9 @@
+import { useState } from "react";
+import { doSignInWithEmailAndPassword } from "../firebase/auth";
+
 export default function Login() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   return (
     <div className="flex h-screen justify-center items-center bg-gray-100">
       <div className="w-full max-w-sm">
@@ -13,6 +18,8 @@ export default function Login() {
                 type="email"
                 placeholder="Enter your email"
                 className="input input-bordered w-full"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
             </div>
             <div className="form-control mb-6">
@@ -23,6 +30,8 @@ export default function Login() {
                 type="password"
                 placeholder="Enter your password"
                 className="input input-bordered w-full"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
               />
             </div>
             <div className="form-control mb-6">
@@ -31,7 +40,12 @@ export default function Login() {
                 <span className="label-text">Remember me</span>
               </label> */}
             </div>
-            <button className="btn btn-primary w-full">Login</button>
+            <button
+              className="btn btn-primary w-full"
+              onClick={() => doSignInWithEmailAndPassword(email, password)}
+            >
+              Login
+            </button>
           </form>
           <div className="text-center mt-4">
             <a href="#" className="link-hover link-primary">
