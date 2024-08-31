@@ -1,9 +1,21 @@
 import { useState } from "react";
 import { doSignInWithEmailAndPassword } from "../firebase/auth";
+import toast, { Toaster } from "react-hot-toast";
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    try {
+      e.preventDefault();
+      await doSignInWithEmailAndPassword(email, password);
+      toast.success("successfully logged in");
+    } catch (err) {
+      console.log(err);
+      toast.error("error");
+    }
+  };
   return (
     <div className="flex h-screen justify-center items-center bg-gray-100">
       <div className="w-full max-w-sm">
@@ -40,12 +52,10 @@ export default function Login() {
                 <span className="label-text">Remember me</span>
               </label> */}
             </div>
-            <button
-              className="btn btn-primary w-full"
-              onClick={() => doSignInWithEmailAndPassword(email, password)}
-            >
+            <button className="btn btn-primary w-full" onClick={onSubmit}>
               Login
             </button>
+            <Toaster />
           </form>
           <div className="text-center mt-4">
             <a href="#" className="link-hover link-primary">
