@@ -1,8 +1,20 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { doSignInWithEmailAndPassword } from "../firebase/auth";
 import toast, { Toaster } from "react-hot-toast";
+import { Navigate } from "react-router-dom";
+import AuthContext from "../context/AuthContext";
+
+export function useAuth() {
+  const authCtx = useContext(AuthContext);
+  if (authCtx === null) {
+    throw new Error("useAuth must be used within an AuthProvider");
+  }
+  return authCtx;
+}
 
 export default function Login() {
+  const { userLoggedIn } = useAuth();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -13,10 +25,11 @@ export default function Login() {
       toast.success("successfully logged in");
     } catch (err) {
       console.log(err);
-      toast.error("error");
+      toast.error("Invalid login details");
     }
   };
   return (
+    // {userLoggedIn && <Navigate to='' replace={true} />}
     <div className="flex h-screen justify-center items-center bg-gray-100">
       <div className="w-full max-w-sm">
         <div className="card bg-white shadow-lg p-8">
