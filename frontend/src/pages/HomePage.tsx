@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Navbar from "../components/Navbar";
 import { useAuth } from "../hooks/hooks";
 import { Navigate } from "react-router-dom";
+import AddOn from "../components/AddOn";
 
 interface AddOns {
   quickWax: boolean;
@@ -30,6 +31,8 @@ const WheelsAddOns: (keyof AddOns)[] = [
 ];
 
 const EngineAddOns: (keyof AddOns)[] = ["conditioning", "detailing"];
+
+const GlassPlasticAddOns: (keyof AddOns)[] = ["windowPolish"];
 
 function HomePage() {
   const { userLoggedIn } = useAuth();
@@ -101,70 +104,35 @@ function HomePage() {
             <h2 className="text-3xl font-bold mb-6 text-center">Add Ons</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
               {/* Panels */}
-              <div>
-                <h3 className="font-semibold mb-4">Panels</h3>
-                {PanelAddOns.map((addOn) => (
-                  <label key={addOn} className="flex items-center space-x-2">
-                    <input
-                      type="checkbox"
-                      checked={addOns[addOn]}
-                      onChange={() => handleAddOnChange(addOn)}
-                      className="checkbox checkbox-primary"
-                    />
-                    <span className="label-text capitalize">
-                      {addOn.replace(/([A-Z])/g, " $1")}
-                    </span>
-                  </label>
-                ))}
-              </div>
-
+              <AddOn
+                addOns={addOns}
+                setAddOns={setAddOns}
+                carComponent={PanelAddOns}
+                carComponentName="Panels"
+              />
               {/* Wheels */}
-              <div>
-                <h3 className="font-semibold mb-4">Wheels</h3>
-                {WheelsAddOns.map((addOn) => (
-                  <label key={addOn} className="flex items-center space-x-2">
-                    <input
-                      type="checkbox"
-                      checked={addOns[addOn]}
-                      onChange={() => handleAddOnChange(addOn)}
-                      className="checkbox checkbox-primary"
-                    />
-                    <span className="label-text capitalize">
-                      {addOn.replace(/([A-Z])/g, " $1")}
-                    </span>
-                  </label>
-                ))}
-              </div>
+              <AddOn
+                addOns={addOns}
+                setAddOns={setAddOns}
+                carComponent={WheelsAddOns}
+                carComponentName="Wheels"
+              />
 
               {/* Engine Bay */}
-              <div>
-                <h3 className="font-semibold mb-4">Engine Bay</h3>
-                {EngineAddOns.map((addOn) => (
-                  <label key={addOn} className="flex items-center space-x-2">
-                    <input
-                      type="checkbox"
-                      checked={addOns[addOn]}
-                      onChange={() => handleAddOnChange(addOn)}
-                      className="checkbox checkbox-primary"
-                    />
-                    <span className="label-text capitalize">{addOn}</span>
-                  </label>
-                ))}
-              </div>
+              <AddOn
+                addOns={addOns}
+                setAddOns={setAddOns}
+                carComponent={EngineAddOns}
+                carComponentName="Engine Bay"
+              />
 
               {/* Glass & Plastics */}
-              <div>
-                <h3 className="font-semibold mb-4">Glass & Plastics</h3>
-                <label className="flex items-center space-x-2">
-                  <input
-                    type="checkbox"
-                    checked={addOns.windowPolish}
-                    onChange={() => handleAddOnChange("windowPolish")}
-                    className="checkbox checkbox-primary"
-                  />
-                  <span className="label-text">Window Polish</span>
-                </label>
-              </div>
+              <AddOn
+                addOns={addOns}
+                setAddOns={setAddOns}
+                carComponent={GlassPlasticAddOns}
+                carComponentName="Glass & Plastics"
+              />
             </div>
           </div>
 
