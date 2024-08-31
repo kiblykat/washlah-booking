@@ -1,16 +1,8 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { doSignInWithEmailAndPassword } from "../firebase/auth";
 import toast, { Toaster } from "react-hot-toast";
 import { Navigate } from "react-router-dom";
-import AuthContext from "../context/AuthContext";
-
-function useAuth() {
-  const authCtx = useContext(AuthContext);
-  if (authCtx === null) {
-    throw new Error("useAuth must be used within an AuthProvider");
-  }
-  return authCtx;
-}
+import { useAuth } from "../hooks/hooks";
 
 export default function Login() {
   const { userLoggedIn } = useAuth();
