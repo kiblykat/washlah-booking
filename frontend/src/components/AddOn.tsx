@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 
-interface AddOns {
+type AddOns = {
   quickWax: boolean;
   ceramicDetailer: boolean;
   wetcoatSealant: boolean;
@@ -11,14 +11,14 @@ interface AddOns {
   conditioning: boolean;
   detailing: boolean;
   windowPolish: boolean;
-}
+};
 
-interface AddOnProps {
+type AddOnProps = {
   addOns: AddOns;
   setAddOns: React.Dispatch<React.SetStateAction<AddOns>>;
   carComponent: (keyof AddOns)[];
   carComponentName: string;
-}
+};
 
 const AddOn: FC<AddOnProps> = ({
   addOns,
@@ -39,7 +39,7 @@ const AddOn: FC<AddOnProps> = ({
             type="checkbox"
             checked={addOns[addOn]}
             onChange={() => handleAddOnChange(addOn)}
-            className="checkbox checkbox-primary"
+            className="checkbox checkbox-primary m-1"
           />
           <span className="label-text capitalize">
             {addOn.replace(/([A-Z])/g, " $1")}

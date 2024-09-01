@@ -26,15 +26,29 @@ const Navbar = () => {
           )}
         </div>
         <div className="flex space-x-4">
-          <a href="#tickets" className="link link-hover">
-            My Tickets
-          </a>
-          <a href="#bookings" className="link link-hover">
-            Bookings
-          </a>
-          <a href="#calendar" className="link link-hover">
-            Calendar
-          </a>
+          <div className="hidden md:flex items-center space-x-4">
+            <a
+              href="#tickets"
+              className="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium relative group"
+            >
+              My Tickets
+              <span className="absolute bottom-0 left-0 w-full h-0.5 bg-gray-900 transform scale-x-0 group-hover:scale-x-75 transition-transform duration-300 ease-in-out"></span>
+            </a>
+            <a
+              href="#bookings"
+              className="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium relative group"
+            >
+              Bookings
+              <span className="absolute bottom-0 left-0 w-full h-0.5 bg-gray-900 transform scale-x-0 group-hover:scale-x-75 transition-transform duration-300 ease-in-out"></span>
+            </a>
+            <a
+              href="#calendar"
+              className="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium relative group"
+            >
+              Calendar
+              <span className="absolute bottom-0 left-0 w-full h-0.5 bg-gray-900 transform scale-x-0 group-hover:scale-x-75 transition-transform duration-300 ease-in-out"></span>
+            </a>
+          </div>
           <button className="btn btn-success">Book A Slot Now ↓</button>
         </div>
       </nav>

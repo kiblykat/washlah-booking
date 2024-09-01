@@ -54,10 +54,6 @@ function HomePage() {
     setSelectedSlot(slot);
   };
 
-  const handleAddOnChange = (addOn: keyof AddOns) => {
-    setAddOns({ ...addOns, [addOn]: !addOns[addOn] });
-  };
-
   const totalPrice = 350; // Example total price, calculate based on selections
 
   return (
