@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import { useAuth } from "../hooks/hooks";
 import { Navigate } from "react-router-dom";
 import AddOn from "../components/AddOn";
 
-interface AddOns {
+type AddOns = {
   quickWax: boolean;
   ceramicDetailer: boolean;
   wetcoatSealant: boolean;
@@ -15,7 +15,7 @@ interface AddOns {
   conditioning: boolean;
   detailing: boolean;
   windowPolish: boolean;
-}
+};
 
 const PanelAddOns: (keyof AddOns)[] = [
   "quickWax",
@@ -34,6 +34,36 @@ const EngineAddOns: (keyof AddOns)[] = ["conditioning", "detailing"];
 
 const GlassPlasticAddOns: (keyof AddOns)[] = ["windowPolish"];
 
+const slotPrices: { [key: string]: number } = {
+  P1: 100,
+  P2: 150,
+  P3: 200,
+  P4: 250,
+};
+
+const addOnPrices: { [K in keyof AddOns]: number } = {
+  quickWax: 50,
+  ceramicDetailer: 75,
+  wetcoatSealant: 60,
+  pasteWax: 40,
+  tiresCleaning: 30,
+  innerBarrel: 25,
+  rimsDegrease: 20,
+  conditioning: 55,
+  detailing: 80,
+  windowPolish: 35,
+};
+
+function calculateTotalPrice(selectedSlot: string, addOns: AddOns): number {
+  const totalSlotPrice = slotPrices[selectedSlot];
+
+  const totalAddOnPrice = Object.keys(addOns)
+    .filter((key) => addOns[key as keyof AddOns])
+    .reduce((total, key) => total + addOnPrices[key as keyof AddOns], 0);
+
+  return totalSlotPrice + totalAddOnPrice;
+}
+
 function HomePage() {
   const { userLoggedIn } = useAuth();
   const [selectedSlot, setSelectedSlot] = useState("P1");
@@ -49,12 +79,16 @@ function HomePage() {
     detailing: true,
     windowPolish: false,
   });
+  const [totalPrice, setTotalPrice] = useState<number>(0);
 
   const handleSlotChange = (slot: string) => {
     setSelectedSlot(slot);
   };
 
-  const totalPrice = 350; // Example total price, calculate based on selections
+  useEffect(() => {
+    const total = calculateTotalPrice(selectedSlot, addOns);
+    setTotalPrice(total);
+  }, [selectedSlot, addOns]);
 
   return (
     <>
