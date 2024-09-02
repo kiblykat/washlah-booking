@@ -29,9 +29,11 @@ export function AuthProvider({ children }: AuthProviderProps) {
     if (user) {
       setCurrentUser(user);
       setUserLoggedIn(true);
+      console.log("user is logged in");
     } else {
       setCurrentUser(null);
       setUserLoggedIn(false);
+      console.log("user is NOT logged in");
     }
     setLoading(false);
   }
