@@ -3,7 +3,7 @@ import Navbar from "../components/Navbar";
 import { useAuth } from "../hooks/hooks";
 import { Navigate } from "react-router-dom";
 import AddOn from "../components/AddOn";
-
+import bookingAPI from "../api/api";
 type AddOns = {
   quickWax: boolean;
   ceramicDetailer: boolean;
@@ -64,8 +64,31 @@ function calculateTotalPrice(selectedSlot: string, addOns: AddOns): number {
   return totalSlotPrice + totalAddOnPrice;
 }
 
+async function handleBooking(
+  uid: string | undefined,
+  selectedSlot: string,
+  addOns: AddOns
+) {
+  const newBooking = {
+    userId: uid,
+    slotType: selectedSlot,
+    addOns: addOns,
+    purchaseDate: Date.now,
+    validUntil: new Date(Date.now() + 5 * 24 * 60 * 60 * 1000),
+  };
+
+  try {
+    const response = await bookingAPI.post("/tickets", newBooking);
+    console.log(
+      "response from bookingAPI is: " + JSON.stringify(response.data)
+    );
+  } catch (err) {
+    console.log(err);
+  }
+}
+
 function HomePage() {
-  const { userLoggedIn } = useAuth();
+  const { userLoggedIn, currentUser } = useAuth();
   const [selectedSlot, setSelectedSlot] = useState("P1");
   const [addOns, setAddOns] = useState<AddOns>({
     quickWax: true,
@@ -171,7 +194,14 @@ function HomePage() {
             <p className="text-2xl font-bold mr-4">
               Total Price: ${totalPrice}
             </p>
-            <button className="btn btn-success btn-lg">Book! →</button>
+            <button
+              className="btn btn-success btn-lg"
+              onClick={() =>
+                handleBooking(currentUser?.uid, selectedSlot, addOns)
+              }
+            >
+              Book! →
+            </button>
           </div>
         </div>
       </div>

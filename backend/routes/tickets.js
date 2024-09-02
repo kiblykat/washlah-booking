@@ -14,22 +14,26 @@ router.get("/", async (req, res) => {
 
 router.post("/", async (req, res) => {
   try {
+    if (
+      !req.body.userId ||
+      !req.body.slotType ||
+      !req.body.addOns ||
+      !req.body.validUntil
+    ) {
+      return res.status(400).json({ msg: "send all required fields" });
+    }
+
+    const isAlrBooked = await TicketModel.findOne({
+      userId: req.body.userId,
+    });
+    if (isAlrBooked) {
+      return res.status(400).json({ msg: "slot already booked" });
+    }
     const newTicket = {
-      userId: "1",
-      slotType: "P1",
-      addOns: {
-        quickWax: true,
-        ceramicDetailer: false,
-        wetcoatSealant: false,
-        pasteWax: true,
-        tiresCleaning: false,
-        innerBarrel: false,
-        rimsDegrease: true,
-        conditioning: true,
-        detailing: true,
-        windowPolish: false,
-      },
-      validUntil: new Date(Date.now() + 5 * 24 * 60 * 60 * 1000), // 5 days from now
+      userId: req.body.userId,
+      slotType: req.body.slotType,
+      addOns: req.body.addOns,
+      validUntil: req.body.validUntil,
     };
     const favParking = await TicketModel.create(newTicket);
     res.status(200).json({ data: favParking });
