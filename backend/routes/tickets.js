@@ -18,24 +18,16 @@ router.post("/", async (req, res) => {
       userId: "1",
       slotType: "P1",
       addOns: {
-        panels: {
-          quickWax: true,
-          ceramicDetailer: false,
-          wetcoatSealant: false,
-          pasteWax: true,
-        },
-        wheels: {
-          tiresCleaning: false,
-          innerBarrel: false,
-          rimsDegrease: true,
-        },
-        engineBay: {
-          conditioning: true,
-          detailing: true,
-        },
-        glassAndPlastics: {
-          windowPolish: false,
-        },
+        quickWax: true,
+        ceramicDetailer: false,
+        wetcoatSealant: false,
+        pasteWax: true,
+        tiresCleaning: false,
+        innerBarrel: false,
+        rimsDegrease: true,
+        conditioning: true,
+        detailing: true,
+        windowPolish: false,
       },
       validUntil: new Date(Date.now() + 5 * 24 * 60 * 60 * 1000), // 5 days from now
     };

@@ -10,24 +10,16 @@ const ticketSchema = new mongoose.Schema({
     required: true,
   },
   addOns: {
-    panels: {
-      quickWax: { type: Boolean, default: false },
-      ceramicDetailer: { type: Boolean, default: false },
-      wetcoatSealant: { type: Boolean, default: false },
-      pasteWax: { type: Boolean, default: false },
-    },
-    wheels: {
-      tiresCleaning: { type: Boolean, default: false },
-      innerBarrel: { type: Boolean, default: false },
-      rimsDegrease: { type: Boolean, default: false },
-    },
-    engineBay: {
-      conditioning: { type: Boolean, default: false },
-      detailing: { type: Boolean, default: false },
-    },
-    glassAndPlastics: {
-      windowPolish: { type: Boolean, default: false },
-    },
+    quickWax: { type: Boolean, default: false },
+    ceramicDetailer: { type: Boolean, default: false },
+    wetcoatSealant: { type: Boolean, default: false },
+    pasteWax: { type: Boolean, default: false },
+    tiresCleaning: { type: Boolean, default: false },
+    innerBarrel: { type: Boolean, default: false },
+    rimsDegrease: { type: Boolean, default: false },
+    conditioning: { type: Boolean, default: false },
+    detailing: { type: Boolean, default: false },
+    windowPolish: { type: Boolean, default: false },
   },
   purchaseDate: {
     type: Date,
