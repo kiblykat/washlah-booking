@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import Navbar from "../components/Navbar";
 import { useAuth } from "../hooks/hooks";
 import { Navigate } from "react-router-dom";
 import AddOn from "../components/AddOn";

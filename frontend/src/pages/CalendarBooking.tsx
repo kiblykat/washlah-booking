@@ -1,7 +1,7 @@
-import React, { useState } from "react";
 import { Calendar, momentLocalizer, Views } from "react-big-calendar";
 import moment from "moment";
 import "react-big-calendar/lib/css/react-big-calendar.css";
+import { useState } from "react";
 
 const localizer = momentLocalizer(moment);
 
@@ -15,7 +15,8 @@ const events = [
 ];
 
 const CalendarBooking = () => {
-  const [view, setView] = useState(Views.WEEK);
+  // const [view, setView] = useState(Views.WEEK);
+  const [view] = useState(Views.WEEK);
 
   return (
     <div>
