@@ -4,6 +4,7 @@ import { useAuth } from "../hooks/hooks";
 import { Navigate } from "react-router-dom";
 import AddOn from "../components/AddOn";
 import bookingAPI from "../api/api";
+
 type AddOns = {
   quickWax: boolean;
   ceramicDetailer: boolean;

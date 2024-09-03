@@ -28,21 +28,21 @@ const Navbar = () => {
         <div className="flex space-x-4">
           <div className="hidden md:flex items-center space-x-4">
             <a
-              href="#tickets"
+              href="/account"
               className="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium relative group"
             >
-              My Tickets
+              My Account
               <span className="absolute bottom-0 left-0 w-full h-0.5 bg-gray-900 transform scale-x-0 group-hover:scale-x-75 transition-transform duration-300 ease-in-out"></span>
             </a>
             <a
-              href="#bookings"
+              href="/tickets"
               className="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium relative group"
             >
-              Bookings
+              Tickets
               <span className="absolute bottom-0 left-0 w-full h-0.5 bg-gray-900 transform scale-x-0 group-hover:scale-x-75 transition-transform duration-300 ease-in-out"></span>
             </a>
             <a
-              href="#calendar"
+              href="/calendar"
               className="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium relative group"
             >
               Calendar
