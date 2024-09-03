@@ -115,7 +115,7 @@ function HomePage() {
 
   return (
     <>
-      {!userLoggedIn && <Navigate to={"/home"} replace={true} />}
+      {!userLoggedIn && <Navigate to={"/"} replace={true} />}
       <div className="min-h-screen bg-gray-100">
         {/* Main Content */}
         <div className="container mx-auto py-10 px-4">

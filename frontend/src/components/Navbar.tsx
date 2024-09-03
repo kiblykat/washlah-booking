@@ -16,8 +16,11 @@ const Navbar = () => {
   const { userLoggedIn } = useAuth();
   const navigate = useNavigate();
 
-  function handleNavigation() {
-    navigate("/home");
+  function handleNavigationBook() {
+    navigate("/home/book");
+  }
+  function handleNavigationCalendar() {
+    navigate("/home/calendar");
   }
 
   return (
@@ -48,17 +51,17 @@ const Navbar = () => {
               Tickets
               <span className="absolute bottom-0 left-0 w-full h-0.5 bg-gray-900 transform scale-x-0 group-hover:scale-x-75 transition-transform duration-300 ease-in-out"></span>
             </a>
-            <a
-              href="/calendar"
+            <button
+              onClick={() => handleNavigationCalendar()}
               className="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium relative group"
             >
               Calendar
               <span className="absolute bottom-0 left-0 w-full h-0.5 bg-gray-900 transform scale-x-0 group-hover:scale-x-75 transition-transform duration-300 ease-in-out"></span>
-            </a>
+            </button>
           </div>
           <button
             className="btn btn-success"
-            onClick={() => handleNavigation()}
+            onClick={() => handleNavigationBook()}
           >
             Book A Slot Now ↓
           </button>

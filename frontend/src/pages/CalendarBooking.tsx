@@ -2,6 +2,8 @@ import { Calendar, momentLocalizer, Views } from "react-big-calendar";
 import moment from "moment";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import { useState } from "react";
+import { Navigate } from "react-router-dom";
+import { useAuth } from "../hooks/hooks";
 
 const localizer = momentLocalizer(moment);
 
@@ -15,11 +17,14 @@ const events = [
 ];
 
 const CalendarBooking = () => {
+  const { userLoggedIn } = useAuth();
+
   // const [view, setView] = useState(Views.WEEK);
   const [view] = useState(Views.WEEK);
 
   return (
     <div>
+      {!userLoggedIn && <Navigate to={"/"} replace={true} />}
       <Calendar
         localizer={localizer}
         events={events}

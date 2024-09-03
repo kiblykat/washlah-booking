@@ -22,7 +22,7 @@ export default function Login() {
   };
   return (
     <>
-      {userLoggedIn && <Navigate to="/home" replace={true} />}
+      {userLoggedIn && <Navigate to="/home/book" replace={true} />}
       <div className="flex h-screen justify-center items-center bg-gray-100">
         <div className="w-full max-w-sm">
           <div className="card bg-white shadow-lg p-8">
