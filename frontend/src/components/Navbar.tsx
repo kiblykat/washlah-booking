@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import washlah from "../assets/washlah-logo.png";
 import { doSignOut } from "../firebase/auth";
 import { auth } from "../firebase/firebase";
@@ -13,6 +14,12 @@ async function handleLogout() {
 
 const Navbar = () => {
   const { userLoggedIn } = useAuth();
+  const navigate = useNavigate();
+
+  function handleNavigation() {
+    navigate("/home");
+  }
+
   return (
     <>
       <nav className="flex justify-between items-center p-4 bg-white shadow-md">
@@ -49,7 +56,12 @@ const Navbar = () => {
               <span className="absolute bottom-0 left-0 w-full h-0.5 bg-gray-900 transform scale-x-0 group-hover:scale-x-75 transition-transform duration-300 ease-in-out"></span>
             </a>
           </div>
-          <button className="btn btn-success">Book A Slot Now ↓</button>
+          <button
+            className="btn btn-success"
+            onClick={() => handleNavigation()}
+          >
+            Book A Slot Now ↓
+          </button>
         </div>
       </nav>
     </>
