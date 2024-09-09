@@ -1,18 +1,36 @@
-import { Calendar, momentLocalizer, Views } from "react-big-calendar";
-import moment from "moment";
-import "react-big-calendar/lib/css/react-big-calendar.css";
+import { Calendar, dateFnsLocalizer, Views } from "react-big-calendar";
+import { format, parse, startOfWeek, getDay, addHours } from "date-fns";
+import { enUS } from "date-fns/locale";
+import "react-big-calendar/lib/css/react-big-calendar.css"; // Import default styles
 import { useState } from "react";
 import { Navigate } from "react-router-dom";
 import { useAuth } from "../hooks/hooks";
 
-const localizer = momentLocalizer(moment);
+const localizer = dateFnsLocalizer({
+  format,
+  parse,
+  startOfWeek,
+  getDay,
+  locales: { "en-US": enUS },
+});
 
 const events = [
   // Example event
   {
-    start: new Date(),
-    end: new Date(moment().add(1, "hour").toDate()),
-    title: "Scheduled Event",
+    title: "John Doe (P1)",
+    start: parse("2024-09-10 15:00:00", "yyyy-MM-dd HH:mm:ss", new Date()),
+    end: addHours(
+      parse("2024-09-10 15:00:00", "yyyy-MM-dd HH:mm:ss", new Date()),
+      0.5
+    ),
+  },
+  {
+    title: "Jane Smith (P4)",
+    start: parse("2024-09-10 15:00:00", "yyyy-MM-dd HH:mm:ss", new Date()),
+    end: addHours(
+      parse("2024-09-10 15:00:00", "yyyy-MM-dd HH:mm:ss", new Date()),
+      1.5
+    ),
   },
 ];
 
@@ -23,7 +41,7 @@ const CalendarBooking = () => {
   const [view] = useState(Views.WEEK);
 
   return (
-    <div>
+    <div className="p-6">
       {!userLoggedIn && <Navigate to={"/"} replace={true} />}
       <Calendar
         localizer={localizer}
@@ -37,7 +55,7 @@ const CalendarBooking = () => {
         defaultDate={new Date()}
         style={{ height: "80vh" }} // Adjust height as needed
         min={new Date(new Date().setHours(9, 0, 0))} // Start time (9 AM)
-        max={new Date(new Date().setHours(17, 0, 0))} // End time (5 PM)
+        max={new Date(new Date().setHours(19, 30, 0))} // End time (5 PM)
       />
     </div>
   );
