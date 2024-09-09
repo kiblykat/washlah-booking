@@ -11,7 +11,7 @@ export default function Login() {
 
   const navigate = useNavigate();
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     try {
       e.preventDefault();
       await doSignInWithEmailAndPassword(email, password);
@@ -33,7 +33,7 @@ export default function Login() {
         <div className="w-full max-w-sm">
           <div className="card bg-white shadow-lg p-8">
             <h2 className="text-2xl font-bold text-center mb-6">Login</h2>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleLogin}>
               <div className="form-control mb-4">
                 <label className="label">
                   <span className="label-text">Email</span>
