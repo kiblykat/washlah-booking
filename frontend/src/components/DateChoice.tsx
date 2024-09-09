@@ -14,7 +14,16 @@ const DateChoice = () => {
     //working hours
     const hours = selectedTime.getHours();
 
-    return hours >= 9 && hours <= 22 && isElapsed; // Allow only 9 AM to 6 PM
+    return hours >= 10 && hours <= 17.5 && isElapsed; // Allow only 9 AM to 6 PM
+  };
+
+  const filterDates = (date) => {
+    const currentDate = new Date();
+    const twoWeeksFromNow = new Date();
+    twoWeeksFromNow.setDate(currentDate.getDate() + 14); // Add 14 days to the current date
+
+    // Allow dates only between the current date and two weeks from now
+    return date >= currentDate && date <= twoWeeksFromNow;
   };
 
   return (
@@ -30,6 +39,7 @@ const DateChoice = () => {
         dateFormat="Pp"
         className="border p-2 rounded-md shadow-sm"
         filterTime={filterTimes}
+        filterDate={filterDates}
       />
     </div>
   );
