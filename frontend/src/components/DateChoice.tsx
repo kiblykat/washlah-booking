@@ -1,10 +1,11 @@
-import { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-const DateChoice = () => {
-  const [startDate, setStartDate] = useState<Date | null>(new Date());
-
+type DateChoiceProps = {
+  bookDate: Date | null;
+  setBookDate: React.Dispatch<React.SetStateAction<Date | null>>;
+};
+const DateChoice = ({ bookDate, setBookDate }: DateChoiceProps) => {
   // Function to filter out times (disable times outside 9 AM - 6 PM)
   const filterTimes = (time: Date) => {
     const selectedTime = new Date(time);
@@ -33,8 +34,8 @@ const DateChoice = () => {
       </h2>
       <DatePicker
         showIcon
-        selected={startDate}
-        onChange={(date) => setStartDate(date)}
+        selected={bookDate}
+        onChange={(date) => setBookDate(date)}
         showTimeSelect
         dateFormat="Pp"
         className="border p-2 rounded-md shadow-sm"

@@ -91,6 +91,7 @@ async function handleBooking(
 }
 
 function HomePage() {
+  const [bookDate, setBookDate] = useState<Date | null>(new Date());
   const { userLoggedIn, currentUser } = useAuth();
   const [selectedSlot, setSelectedSlot] = useState("P1");
   const [addOns, setAddOns] = useState<AddOns>({
@@ -121,7 +122,7 @@ function HomePage() {
       {!userLoggedIn && <Navigate to={"/"} replace={true} />}
       <div className="min-h-screen bg-gray-100">
         <div className=" flex justify-center align-middle">
-          <DateChoice />
+          <DateChoice bookDate={bookDate} setBookDate={setBookDate} />
         </div>
         {/* Main Content */}
         <div className="container mx-auto py-10 px-4">
