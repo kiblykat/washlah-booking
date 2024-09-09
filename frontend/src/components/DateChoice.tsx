@@ -3,21 +3,21 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 const DateChoice = () => {
-  const [startDate, setStartDate] = useState(new Date());
+  const [startDate, setStartDate] = useState<Date | null>(new Date());
 
   // Function to filter out times (disable times outside 9 AM - 6 PM)
-  const filterTimes = (time) => {
+  const filterTimes = (time: Date) => {
     const selectedTime = new Date(time);
     const currentTime = new Date();
     //block out timings that have passed
-    let isElapsed = selectedTime > currentTime;
+    const isElapsed = selectedTime > currentTime;
     //working hours
     const hours = selectedTime.getHours();
 
     return hours >= 10 && hours <= 17.5 && isElapsed; // Allow only 9 AM to 6 PM
   };
 
-  const filterDates = (date) => {
+  const filterDates = (date: Date) => {
     const currentDate = new Date();
     const twoWeeksFromNow = new Date();
     twoWeeksFromNow.setDate(currentDate.getDate() + 14); // Add 14 days to the current date
