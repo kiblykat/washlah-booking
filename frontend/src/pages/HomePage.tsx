@@ -18,6 +18,13 @@ type AddOns = {
   windowPolish: boolean;
 };
 
+type SlotDesc = {
+  P1: string;
+  P2: string;
+  P3: string;
+  P4: string;
+};
+
 const PanelAddOns: (keyof AddOns)[] = [
   "quickWax",
   "ceramicDetailer",
@@ -53,6 +60,13 @@ const addOnPrices: { [K in keyof AddOns]: number } = {
   conditioning: 55,
   detailing: 80,
   windowPolish: 35,
+};
+
+const slotdesc: SlotDesc = {
+  P1: "(VIP Only) Foam wash (PH Neutral) + Vacuum + Tyre Shine + Glass Clean",
+  P2: "P1 + Plastics/trims restore + Rims degrease + Quick wax",
+  P3: "P1 + P2 + Leather seats conditioning+ Inner barrel + Tyre Cleaning",
+  P4: "P1 + P2 + P3 + Clay rub + Full interior conditioning + Engine bay(C) + Wetcoat",
 };
 
 function calculateTotalPrice(selectedSlot: string, addOns: AddOns): number {
@@ -149,11 +163,8 @@ function HomePage() {
             <div>
               <h2 className="text-3xl font-bold mb-6">Description</h2>
               <p className="text-lg">
-                <strong>{selectedSlot}:</strong> Lorem ipsum dolor sit amet,
-                consectetur adipiscing elit. Aenean augue elit, consequat id
-                facilisis a, condimentum vitae magna. Praesent rutrum, dolor
-                quis hendrerit lacinia, est massa feugiat velit, eu suscipit
-                libero nulla et ligula.
+                <strong>{selectedSlot}:</strong>{" "}
+                {slotdesc[selectedSlot as keyof SlotDesc]}
               </p>
             </div>
           </div>
