@@ -43,23 +43,23 @@ const EngineAddOns: (keyof AddOns)[] = ["conditioning", "detailing"];
 const GlassPlasticAddOns: (keyof AddOns)[] = ["windowPolish"];
 
 const slotPrices: { [key: string]: number } = {
-  P1: 100,
-  P2: 150,
-  P3: 200,
-  P4: 250,
+  P1: 25,
+  P2: 38,
+  P3: 55,
+  P4: 80,
 };
 
 const addOnPrices: { [K in keyof AddOns]: number } = {
-  quickWax: 50,
-  ceramicDetailer: 75,
-  wetcoatSealant: 60,
-  pasteWax: 40,
-  tiresCleaning: 30,
-  innerBarrel: 25,
-  rimsDegrease: 20,
-  conditioning: 55,
-  detailing: 80,
-  windowPolish: 35,
+  quickWax: 15,
+  ceramicDetailer: 20,
+  wetcoatSealant: 25,
+  pasteWax: 30,
+  tiresCleaning: 5,
+  innerBarrel: 8,
+  rimsDegrease: 5,
+  conditioning: 15,
+  detailing: 30,
+  windowPolish: 200,
 };
 
 const slotdesc: SlotDesc = {
