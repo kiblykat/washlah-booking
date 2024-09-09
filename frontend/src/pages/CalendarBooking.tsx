@@ -1,8 +1,15 @@
 import { Calendar, dateFnsLocalizer, Views } from "react-big-calendar";
-import { format, parse, startOfWeek, getDay, addHours } from "date-fns";
+import {
+  format,
+  parse,
+  startOfWeek,
+  getDay,
+  addHours,
+  getHours,
+} from "date-fns";
 import { enUS } from "date-fns/locale";
 import "react-big-calendar/lib/css/react-big-calendar.css"; // Import default styles
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { Navigate } from "react-router-dom";
 import { useAuth } from "../hooks/hooks";
 
@@ -17,7 +24,7 @@ const localizer = dateFnsLocalizer({
 const events = [
   // Example event
   {
-    title: "John Doe (P1)",
+    title: "Meeting (P1)",
     start: parse("2024-09-10 15:00:00", "yyyy-MM-dd HH:mm:ss", new Date()),
     end: addHours(
       parse("2024-09-10 15:00:00", "yyyy-MM-dd HH:mm:ss", new Date()),
@@ -35,6 +42,22 @@ const events = [
 ];
 
 const CalendarBooking = () => {
+  const eventPropGetter = useCallback(
+    (event, start, end, isSelected) => ({
+      ...(isSelected && {
+        style: {
+          backgroundColor: "#000",
+        },
+      }),
+      ...(getHours(start) < 16 && {
+        className: "bg-green-50",
+      }),
+      ...(event.title.includes("Meeting") && {
+        className: "bg-green-50",
+      }),
+    }),
+    []
+  );
   const { userLoggedIn } = useAuth();
 
   // const [view, setView] = useState(Views.WEEK);
@@ -56,6 +79,8 @@ const CalendarBooking = () => {
         style={{ height: "80vh" }} // Adjust height as needed
         min={new Date(new Date().setHours(9, 0, 0))} // Start time (9 AM)
         max={new Date(new Date().setHours(19, 30, 0))} // End time (5 PM)
+        eventPropGetter={eventPropGetter}
+        className="bg-gray-100 p-5 rounded-box shadow-md"
       />
     </div>
   );
