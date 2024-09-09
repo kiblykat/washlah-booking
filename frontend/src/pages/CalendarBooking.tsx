@@ -43,7 +43,8 @@ const events = [
 
 const CalendarBooking = () => {
   const eventPropGetter = useCallback(
-    (event, start, end, isSelected) => ({
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (event: any, start: any, end: any, isSelected: any) => ({
       ...(isSelected && {
         style: {
           backgroundColor: "#000",
