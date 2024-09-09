@@ -3,6 +3,7 @@ import { useAuth } from "../hooks/hooks";
 import { Navigate } from "react-router-dom";
 import AddOn from "../components/AddOn";
 import bookingAPI from "../api/api";
+import DateChoice from "../components/DateChoice";
 
 type AddOns = {
   quickWax: boolean;
@@ -55,13 +56,15 @@ const addOnPrices: { [K in keyof AddOns]: number } = {
 };
 
 function calculateTotalPrice(selectedSlot: string, addOns: AddOns): number {
+  //calculate slot price
   const totalSlotPrice = slotPrices[selectedSlot];
 
+  //calculate addOn price
   const totalAddOnPrice = Object.keys(addOns)
     .filter((key) => addOns[key as keyof AddOns])
     .reduce((total, key) => total + addOnPrices[key as keyof AddOns], 0);
 
-  return totalSlotPrice + totalAddOnPrice;
+  return totalSlotPrice + totalAddOnPrice; //return total price
 }
 
 async function handleBooking(
@@ -117,6 +120,9 @@ function HomePage() {
     <>
       {!userLoggedIn && <Navigate to={"/"} replace={true} />}
       <div className="min-h-screen bg-gray-100">
+        <div className=" flex justify-center align-middle">
+          <DateChoice />
+        </div>
         {/* Main Content */}
         <div className="container mx-auto py-10 px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
