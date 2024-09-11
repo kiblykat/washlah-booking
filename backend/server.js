@@ -9,6 +9,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+//use /tickets endpoints for ticket booking
 app.use("/tickets", ticketRoutes);
 
 const startServer = async () => {
