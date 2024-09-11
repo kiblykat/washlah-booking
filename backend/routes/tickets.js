@@ -27,7 +27,7 @@ router.post("/", async (req, res) => {
       userId: req.body.userId,
     });
     if (isAlrBooked) {
-      return res.status(400).json({ msg: "slot already booked" });
+      return res.status(400).json({ msg: "ticket already booked" });
     }
     const newTicket = {
       userId: req.body.userId,
