@@ -96,7 +96,7 @@ async function handleBooking(
   };
 
   try {
-    const response = await bookingAPI.post("/tickets", newBooking);
+    const response = await bookingAPI.post("/", newBooking);
     console.log(
       "response from bookingAPI is: " + JSON.stringify(response.data)
     );
