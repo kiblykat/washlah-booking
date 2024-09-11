@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useAuth } from "../hooks/hooks";
 import { Navigate } from "react-router-dom";
+import toast, { Toaster } from "react-hot-toast";
 import AddOn from "../components/AddOn";
 import bookingAPI from "../api/api";
 import DateChoice from "../components/DateChoice";
@@ -99,8 +100,13 @@ async function handleBooking(
     console.log(
       "response from bookingAPI is: " + JSON.stringify(response.data)
     );
-  } catch (err) {
-    console.log(err);
+    //todo: UID IS JUST FOR DEMONSTRATION PURPOSES
+    toast.success(`booking successful for user ${uid}`);
+  } catch (error) {
+    // @ts-expect-error todo: update error class
+    toast.error(error.response.data.msg);
+    // @ts-expect-error todo: update error class
+    console.log(error.response.data.msg);
   }
 }
 
@@ -219,6 +225,7 @@ function HomePage() {
             >
               Book! →
             </button>
+            <Toaster />
           </div>
         </div>
       </div>
